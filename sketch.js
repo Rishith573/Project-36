@@ -11,18 +11,17 @@ function preload()
 
 function setup() {
   
+  db = firebase.database();
   createCanvas(1000, 400);
 
-  
+  foodObj = new Food();
+
+  foodStock = db.ref("Food");
+  foodStock.on("value", readStock);
 
   dog = createSprite(800, 250, 20, 20)
   dog.addImage(dogImg)
   dog.scale = 0.25;
-
-  db = firebase.database();
-
-  foodStock = db.ref("Food");
-  foodStock.on("value", readStock);
 
   feed = createButton("Feed the dog");
   feed.position(700, 95);
@@ -31,7 +30,7 @@ function setup() {
   addFood = createButton("Add Food");
   addFood.position(800, 95);
   addFood.mousePressed(addFoods);
-  
+
 }
 
 
