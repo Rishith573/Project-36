@@ -1,5 +1,5 @@
 var dog, dogImg, happydogImg;
-var foodS, foodStock, db;
+var foodS, foodStock, database;
 var foodObj;
 var fedTime, lastFed, feed, addFood;
 
@@ -11,12 +11,12 @@ function preload()
 
 function setup() {
   
-  db = firebase.database();
+  database = firebase.database();
   createCanvas(1000, 400);
 
   foodObj = new Food();
 
-  foodStock = db.ref("Food");
+  foodStock = database.ref("Food");
   foodStock.on("value", readStock);
 
   dog = createSprite(800, 250, 20, 20)
@@ -45,7 +45,7 @@ fedTime.on("value", function (data){
 })
 
 fill(255, 255, 254);
-textSixe(15);
+textSize(15);
 if(lastFed >= 12){
   text("Last Feed : " + lastFed%12 + "PM", 350, 30);
 }
