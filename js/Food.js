@@ -7,7 +7,11 @@ class Food {
     }
 
     updateFoodStock(foodStock){
-        this.foodStock = foodStock;
+        if(foodStock>=0){
+            this.foodStock = foodStock;
+        }else{
+            this.foodStock = 0;
+        }
     }
 
     getFedTime(lastFed){
